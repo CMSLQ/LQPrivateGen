@@ -34,7 +34,7 @@ use-old-grid    1 ! if 1 use old grid if file pwggrids.dat is present (<> 1 rege
 use-old-ubound  1 ! if 1 use norm of upper bounding function stored in pwgubound.dat, if present; <> 1 regenerate
 
 minlo 0          ! default 0, set to 1 to use minlo
-withnegweights 1 ! default 0,
+withnegweights 0 ! default 0,
 
 
 ncall1 30000   ! number of calls for initializing the integration grid
