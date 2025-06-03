@@ -1,0 +1,229 @@
+!randomseed 352345 ! uncomment to set the random seed to a value of your choice.
+                   ! It generates the call RM48IN(352345,0,0) (see the RM48 manual).
+                   ! THIS MAY ONLY AFFECTS THE GENERATION OF POWHEG EVENTS!
+                   ! If POWHEG is interfaced to a shower MC, refer to the shower MC
+                   ! documentation to set its seed.
+
+!Heavy flavour production parameters
+
+numevts 100   ! number of events to be generated
+ih1   1        ! hadron 1
+ih2   1        ! hadron 2
+#ndns1 131      ! pdf for hadron 1 (hvqpdf numbering)
+#ndns2 131      ! pdf for hadron 2
+lhans1   82400         ! pdf set for hadron 1 (LHA numbering)
+lhans2   82400         ! pdf set for hadron 2 (LHA numbering)	
+ebeam1 6500    ! energy of beam 1
+ebeam2 6500    ! energy of beam 2
+facscfact 1    ! factorization scale factor: mufact=muref*facscfact 
+renscfact 1    ! renormalization scale factor: muren=muref*renscfact 
+#fixedscale 1    ! use ref. scale=qmass (default 0, use running scale)
+runningscale 0
+
+! Parameters to allow-disallow use of stored data
+use-old-grid 1    ! if 1 use old grid if file pwggrids.dat is present (# 1: regenerate)
+use-old-ubound 0  ! if 1 use norm of upper bounding function stored in pwgubound.dat, if present; # 1: regenerate
+
+ncall1 50000   ! number of calls for initializing the integration grid
+itmx1 5       ! number of iterations for initializing the integration grid
+ncall2 100000  ! number of calls for computing the integral and finding upper bound
+itmx2 5        ! number of iterations for computing the integral and finding upper bound
+foldcsi   1      ! number of folds on x integration
+foldy   1      ! number of folds on y integration
+foldphi 1      ! number of folds on phi integration
+nubound 100000  ! number of bbarra calls to setup norm of upper bounding function
+iymax 1        ! <= 10, normalization of upper bounding function in iunorm X iunorm square in y, log(m2qq)
+ixmax 1        ! <= 10, normalization of upper bounding function in iunorm X iunorm square in y, log(m2qq)
+xupbound 2      ! increase upper bound for radiation generation
+
+
+# manyseeds 1                                      ! (default 0) allow for the generation of different statistically independent samples (see Docs/Manyseeds.pdf)
+# parallelstage 1                                  ! which stage of parallel run 1..4
+# xgriditeration 1                                 ! which grid iteration when in parallelstage 1
+
+# technical parameter
+bornsmartsig 0
+minlo 0          ! default 0, set to 1 to use minlo
+withnegweights 0 ! default 0,
+
+
+#evenmaxrat 1
+testplots 1
+
+mLQ 1000   ! Mass of the LQ
+# the user can provide the width as input; otherwise the program computes the width
+# with the simplest assumption (for example neglecting SU(2) sector) 
+# widthLQ 39.8d0
+
+# if activated, the LQ mass is generated according to a BW within a given mass window
+BWgen 1
+LQmasslow 100
+LQmasshigh 10000
+
+# used in the template analysis, not in generation
+ptcutlep 0
+ptcutjet 0 
+etacutlep 0
+etacutjet 0
+mLQcuthi 0
+mLQcutlo 0
+recombination 1
+smear 0
+
+#bornonly 1
+#btildevirt 0
+#btildecoll 0
+#softmismch 0
+#btildeborn 0
+
+#softtest 0
+#colltest 0
+
+!  / y_1e y_1m y_1t \    u/d
+!  | y_2e y_2m y_2t |    c/s
+!  \ y_3e y_3m y_3t /    t/b
+
+y_1e 1
+y_2e 0
+y_3e 0
+y_1m 0
+y_2m 0
+y_3m 0
+y_1t 0
+y_2t 0
+y_3t 0
+
+charge 1    ! Set this to the charge of the desired LQ's absolute charge times 3. Expect 1,2,4 or 5 
+
+# if 1, alphas is taken from LHAPDF
+alphas_from_pdf 1
+
+
+# alphaQED (needed for QED correction)
+# uncomment the following if you want a fixed coupling
+# at the value XXX; otherwise the program will use
+# a running coupling evaluated at the same renormalisation scale
+# muR as the one used in the QCD calculation
+
+# fixed_alphaQED 1
+# alphaQED XXX
+
+
+
+#   SCALE VARIATION & REWEIGHTING
+storeinfo_rwgt      1    ! store info to allow for reweighting
+
+rwl_file '-'
+<initrwgt>
+<weightgroup name='First-Weights'>
+<weight id='101'> renscfact=1.0 facscfact=1.0  </weight>
+<weight id='102'> renscfact=1.0 facscfact=2.0  </weight>
+<weight id='103'> renscfact=2.0 facscfact=1.0  </weight>
+<weight id='104'> renscfact=2.0 facscfact=2.0  </weight>
+<weight id='105'> renscfact=1.0 facscfact=0.5  </weight>
+<weight id='106'> renscfact=0.5 facscfact=1.0  </weight>
+<weight id='107'> renscfact=0.5 facscfact=0.5  </weight>
+<weightgroup name='PDFS'>
+<weight id='0'> lhapdf=82400 </weight>
+<weight id='1'> lhapdf=82401 </weight>
+<weight id='2'> lhapdf=82402 </weight>
+<weight id='3'> lhapdf=82403 </weight>
+<weight id='4'> lhapdf=82404 </weight>
+<weight id='5'> lhapdf=82405 </weight>
+<weight id='6'> lhapdf=82406 </weight>
+<weight id='7'> lhapdf=82407 </weight>
+<weight id='8'> lhapdf=82408 </weight>
+<weight id='9'> lhapdf=82409 </weight>
+<weight id='10'> lhapdf=82410 </weight>
+<weight id='11'> lhapdf=82411 </weight>
+<weight id='12'> lhapdf=82412 </weight>
+<weight id='13'> lhapdf=82413 </weight>
+<weight id='14'> lhapdf=82414 </weight>
+<weight id='15'> lhapdf=82415 </weight>
+<weight id='16'> lhapdf=82416 </weight>
+<weight id='17'> lhapdf=82417 </weight>
+<weight id='18'> lhapdf=82418 </weight>
+<weight id='19'> lhapdf=82419 </weight>
+<weight id='20'> lhapdf=82420 </weight>
+<weight id='21'> lhapdf=82421 </weight>
+<weight id='22'> lhapdf=82422 </weight>
+<weight id='23'> lhapdf=82423 </weight>
+<weight id='24'> lhapdf=82424 </weight>
+<weight id='25'> lhapdf=82425 </weight>
+<weight id='26'> lhapdf=82426 </weight>
+<weight id='27'> lhapdf=82427 </weight>
+<weight id='28'> lhapdf=82428 </weight>
+<weight id='29'> lhapdf=82429 </weight>
+<weight id='30'> lhapdf=82430 </weight>
+<weight id='31'> lhapdf=82431 </weight>
+<weight id='32'> lhapdf=82432 </weight>
+<weight id='33'> lhapdf=82433 </weight>
+<weight id='34'> lhapdf=82434 </weight>
+<weight id='35'> lhapdf=82435 </weight>
+<weight id='36'> lhapdf=82436 </weight>
+<weight id='37'> lhapdf=82437 </weight>
+<weight id='38'> lhapdf=82438 </weight>
+<weight id='39'> lhapdf=82439 </weight>
+<weight id='40'> lhapdf=82440 </weight>
+<weight id='41'> lhapdf=82441 </weight>
+<weight id='42'> lhapdf=82442 </weight>
+<weight id='43'> lhapdf=82443 </weight>
+<weight id='44'> lhapdf=82444 </weight>
+<weight id='45'> lhapdf=82445 </weight>
+<weight id='46'> lhapdf=82446 </weight>
+<weight id='47'> lhapdf=82447 </weight>
+<weight id='48'> lhapdf=82448 </weight>
+<weight id='49'> lhapdf=82449 </weight>
+<weight id='50'> lhapdf=82450 </weight>
+<weight id='51'> lhapdf=82451 </weight>
+<weight id='52'> lhapdf=82452 </weight>
+<weight id='53'> lhapdf=82453 </weight>
+<weight id='54'> lhapdf=82454 </weight>
+<weight id='55'> lhapdf=82455 </weight>
+<weight id='56'> lhapdf=82456 </weight>
+<weight id='57'> lhapdf=82457 </weight>
+<weight id='58'> lhapdf=82458 </weight>
+<weight id='59'> lhapdf=82459 </weight>
+<weight id='60'> lhapdf=82460 </weight>
+<weight id='61'> lhapdf=82461 </weight>
+<weight id='62'> lhapdf=82462 </weight>
+<weight id='63'> lhapdf=82463 </weight>
+<weight id='64'> lhapdf=82464 </weight>
+<weight id='65'> lhapdf=82465 </weight>
+<weight id='66'> lhapdf=82466 </weight>
+<weight id='67'> lhapdf=82467 </weight>
+<weight id='68'> lhapdf=82468 </weight>
+<weight id='69'> lhapdf=82469 </weight>
+<weight id='70'> lhapdf=82470 </weight>
+<weight id='71'> lhapdf=82471 </weight>
+<weight id='72'> lhapdf=82472 </weight>
+<weight id='73'> lhapdf=82473 </weight>
+<weight id='74'> lhapdf=82474 </weight>
+<weight id='75'> lhapdf=82475 </weight>
+<weight id='76'> lhapdf=82476 </weight>
+<weight id='77'> lhapdf=82477 </weight>
+<weight id='78'> lhapdf=82478 </weight>
+<weight id='79'> lhapdf=82479 </weight>
+<weight id='80'> lhapdf=82480 </weight>
+<weight id='81'> lhapdf=82481 </weight>
+<weight id='82'> lhapdf=82482 </weight>
+<weight id='83'> lhapdf=82483 </weight>
+<weight id='84'> lhapdf=82484 </weight>
+<weight id='85'> lhapdf=82485 </weight>
+<weight id='86'> lhapdf=82486 </weight>
+<weight id='87'> lhapdf=82487 </weight>
+<weight id='88'> lhapdf=82488 </weight>
+<weight id='89'> lhapdf=82489 </weight>
+<weight id='90'> lhapdf=82490 </weight>
+<weight id='91'> lhapdf=82491 </weight>
+<weight id='92'> lhapdf=82492 </weight>
+<weight id='93'> lhapdf=82493 </weight>
+<weight id='94'> lhapdf=82494 </weight>
+<weight id='95'> lhapdf=82495 </weight>
+<weight id='96'> lhapdf=82496 </weight>
+<weight id='97'> lhapdf=82497 </weight>
+<weight id='98'> lhapdf=82498 </weight>
+<weight id='99'> lhapdf=82499 </weight>
+<weight id='100'> lhapdf=82500 </weight>
+</weightgroup>
+</initrwgt>
