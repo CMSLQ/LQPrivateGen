@@ -100,7 +100,14 @@ for idx, line in enumerate(open(opt.inputlist)):
     print (mvcommand)
     os.system(mvcommand)
 
-    listfile.write(opt.outputdir+"/"+rootfilename+"\n")
+    outputFile = opt.outputdir+"/"+rootfilename+"\n"
+    if "eos" in outputFile:
+        if "eos/cms" in outputFile:
+            outputFile = "root://eoscms.cern.ch/" + outputFile
+        else:
+            # just use redirector
+            outputFile = "root://cms-xrd-global.cern.ch/" + outputFile
+    listfile.write()
 
 listfile.close()
 print ("List created: "+opt.outputdir+"/"+listname+".list")
