@@ -1,5 +1,6 @@
 # LQPrivateGen
 Private (for now) signal generation for resonant leptoquark production via the lepton-quark fusion process.
+Based off of the Roma recipe: https://github.com/CMSROMA/LQGen
 See: https://arxiv.org/abs/2209.02599
 
 # Make directory
