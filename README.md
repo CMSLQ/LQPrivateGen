@@ -148,6 +148,22 @@ cmsDriver.py Configuration/GenProduction/python/LQToDEle_leptonInduced_M-2000.py
 cmsRun singleLQ_13TeV_Pow_Herwig7_cfg.py
 ```
 
+# SIM step
+## Running the SIM step inside EXO-MCsampleProductions
+```
+cd [wherever SIM CMSSW is inside the EXO-MCsampleProductions area]/src
+cmsenv
+```
+Then, we make a csv file that contains the primary dataset name, and the list of the GEN input files (the list is made during the run of `make_GEN.sh`).
+```
+python config_SIM.py LQToUEle_leptonInduced_M-1000_lambda1p0.csv
+```
+The whitelist (in, e.g., `LQToUEle_leptonInduced_M-1000_lambda1p0/LQToUEle_M-1000_lambda1p0_leptonInduced_TuneCH3_13TeV-powheg-herwig7/submit_crab.py`) should be used in the crab_submit file as appropriate for where the user's input files are stored.
+Then one can submit the crab jobs (after getting a new proxy if needed, as the output of the previous step suggests):
+```
+source submit_crab_LQToUEle_leptonInduced_M-1000_lambda1p0.sh
+```
+
 # Making a gridpack
 ## First, build powheg, following the steps above
 
