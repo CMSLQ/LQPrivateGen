@@ -15,8 +15,10 @@ Mass=( 1000 )
 #Y=( 0p1 0p2 0p5 1p0 1p5 2p0 3p0 )
 
 OUTPUTDIRBASE=/eos/cms/store/group/phys_exotica/leptonsPlusJets/LQ/scooper/leptonInduced/signalGen/powhegLHE
-evts=10000
-evtsperfile=1000
+evts=100000
+evtsperfile=20000
+
+echo "Generating ${evts} events per mass/coupling. Will split into ${evtsperfile} events per LHE file"
 
 for m in "${Mass[@]}"
 do 
@@ -38,9 +40,14 @@ do
 		cd /tmp/${USER}/${LQNAME}
 		${RUNPWD}/pwhg_main > ${LQNAME}.log
 		mv pwgevents.lhe ${LQNAME}.lhe
-		cd .. 
-		echo "    split LHE files and copy to ${OUTPUTDIR}"	
+		echo "    split LHE files and copy to ${OUTPUTDIR}; list in ${LQNAME}.list"	
 		python ${SCRIPTDIR}/split_LHE.py -i ${LQDIR}/${LQNAME}.lhe -o ${LQDIR}/split -n ${evtsperfile}		
     mv ${LQDIR}/split/*mod*.lhe ${OUTPUTDIR}
+    listFile=${RUNPWD}/${LQNAME}.list
+    rm -f ${listFile}
+    for f in `/usr/bin/ls ${OUTPUTDIR}/*.lhe `; do
+      # echo "root://eoscms.cern.ch/${f}" >> ${listFile}
+      echo ${f}" >> ${listFile}
+    done
 	done 
 done
