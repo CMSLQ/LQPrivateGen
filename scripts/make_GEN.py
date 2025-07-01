@@ -5,6 +5,7 @@ import sys
 import optparse
 import datetime
 import subprocess
+import shlex
 import io
 
 from glob import glob
@@ -94,7 +95,7 @@ for idx, line in enumerate(open(opt.inputlist)):
     customized = CustomizeCfg(opt.scriptname)
     command = "cmsRun "+customized+" "+" files="+line+" output="+opt.outputdir+"/"+rootfilename+" maxEvents="+str(opt.nEvents)
     print (command)
-    os.system(command)
+    subprocess.check_call(shlex.split(command))
 
     mvcommand = "mv "+opt.outputdir+"/"+samplename+"* "+opt.outputdir+"/"+rootfilename
     print (mvcommand)
@@ -107,7 +108,7 @@ for idx, line in enumerate(open(opt.inputlist)):
         else:
             # just use redirector
             outputFile = "root://cms-xrd-global.cern.ch/" + outputFile
-    listfile.write()
+    listfile.write(outputFile + "\n")
 
 listfile.close()
 print ("List created: "+opt.outputdir+"/"+listname+".list")

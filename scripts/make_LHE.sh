@@ -16,7 +16,7 @@ Mass=( 1000 )
 
 OUTPUTDIRBASE=/eos/cms/store/group/phys_exotica/leptonsPlusJets/LQ/scooper/leptonInduced/signalGen/powhegLHE
 evts=100000
-evtsperfile=20000
+evtsperfile=2000
 
 echo "Generating ${evts} events per mass/coupling. Will split into ${evtsperfile} events per LHE file"
 
@@ -47,7 +47,7 @@ do
     rm -f ${listFile}
     for f in `/usr/bin/ls ${OUTPUTDIR}/*.lhe `; do
       # echo "root://eoscms.cern.ch/${f}" >> ${listFile}
-      echo ${f}" >> ${listFile}
+      echo "${f}" >> ${listFile}
     done
 	done 
 done
