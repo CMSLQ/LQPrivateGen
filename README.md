@@ -156,7 +156,7 @@ cmsenv
 ```
 Then, we make a csv file that contains the primary dataset name, and the list of the GEN input files (the list is made during the run of `make_GEN.sh`).
 ```
-python config_SIM.py LQToUEle_leptonInduced_M-1000_lambda1p0.csv
+python3 config_SIM.py LQToUEle_leptonInduced_M-1000_lambda1p0.csv
 ```
 The whitelist (in, e.g., `LQToUEle_leptonInduced_M-1000_lambda1p0/LQToUEle_M-1000_lambda1p0_leptonInduced_TuneCH3_13TeV-powheg-herwig7/submit_crab.py`) should be used in the crab_submit file as appropriate for where the user's input files are stored.
 Then one can submit the crab jobs (after getting a new proxy if needed, as the output of the previous step suggests):
@@ -170,7 +170,7 @@ source submit_crab_LQToUEle_leptonInduced_M-1000_lambda1p0.sh
 ```
 cd [wherever STEP CMSSW is inside the EXO-MCsampleProductions area]/src
 cmsenv
-python config_[STEP].py [csvFile]
+python3 config_[STEP].py [csvFile]
 ``` 
 
 # Making a gridpack
