@@ -129,7 +129,7 @@ python config_GEN.py --inputLHE LQToUEle_leptonInduced_M-1000_lambda1p0.csv
 # Run the make_GEN.sh script to interactively run CMSSW
 #   this will run over each LHE file sequentially
 #   here we run 20000 events at a time, as that is what we had specified for each file in the make_LHE.sh script
-python [location of LQPrivateGen]/scripts/make_GEN.py -i LeptonInducedLQ_uele_M1000_Lambda1p0.list -o [storage dir; can be EOS] -s LQToUEle_leptonInduced_M-1000_lambda1p0/LQToUEle_M-1000_lambda1p0_leptonInduced_TuneCH3_13TeV-powheg-herwig7/run_crab.py -n 20000
+python [location of LQPrivateGen]/scripts/make_GEN.py -i LeptonInducedLQ_uele_M1000_Lambda1p0.list -o [storage dir; can be EOS] -s LQToUEle_leptonInduced_M-1000_lambda1p0/LQToUEle_M-1000_lambda1p0_leptonInduced_TuneCH3_13TeV-powheg-herwig7/run_crab.py -n 2000
 ```
 
 ### Running cmsDriver manually (alternative)
@@ -163,6 +163,13 @@ Then one can submit the crab jobs (after getting a new proxy if needed, as the o
 ```
 source submit_crab_LQToUEle_leptonInduced_M-1000_lambda1p0.sh
 ```
+
+# DIGIPremix and later steps
+## Prepare a csv file with the primary dataset name and the output dataset from the previous step
+## Then execute:
+```
+python config_[STEP].py [csvFile]
+``` 
 
 # Making a gridpack
 ## First, build powheg, following the steps above
