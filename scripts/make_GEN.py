@@ -108,7 +108,7 @@ for idx, line in enumerate(open(opt.inputlist)):
         else:
             # just use redirector
             outputFile = "root://cms-xrd-global.cern.ch/" + outputFile
-    listfile.write(outputFile + "\n")
+    listfile.write(outputFile)
 
 listfile.close()
 print ("List created: "+opt.outputdir+"/"+listname+".list")
