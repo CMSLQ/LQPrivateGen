@@ -168,6 +168,8 @@ source submit_crab_LQToUEle_leptonInduced_M-1000_lambda1p0.sh
 ## Prepare a csv file with the primary dataset name and the output dataset from the previous step
 ## Then execute:
 ```
+cd [wherever STEP CMSSW is inside the EXO-MCsampleProductions area]/src
+cmsenv
 python config_[STEP].py [csvFile]
 ``` 
 
