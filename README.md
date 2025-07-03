@@ -172,6 +172,7 @@ cd [wherever STEP CMSSW is inside the EXO-MCsampleProductions area]/src
 cmsenv
 python3 config_[STEP].py [csvFile]
 ``` 
+**NB: For the HLT step, because the CMSSW version is too old to support python3, python2 (default `python` once you've done `cmsenv`) must be used to execute `config_HLT.py`.**
 
 # Making a gridpack
 ## First, build powheg, following the steps above
