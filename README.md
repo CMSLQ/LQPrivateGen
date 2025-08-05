@@ -30,6 +30,7 @@ export SCRAM_ARCH=slc7_amd64_gcc900
 cmsrel CMSSW_12_0_4
 cd CMSSW_12_0_4/src/
 cmsenv
+source [wherever LQPrivateGen repo is]/scripts/setup_LHAPDF.sh
 ```
 
 ## Clone genproductions repo
