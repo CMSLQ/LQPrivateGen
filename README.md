@@ -122,9 +122,11 @@ cmsenv
 cd [wherever GEN CMSSW is inside the EXO-MCsampleProductions area]/src
 cmsenv
 source [wherever LQPrivateGen repo is]/scripts/setup_LHAPDF.sh
-# modify csv file to contain the .list file that was produced as a result of the make_LHE.sh step
 # copy csv file
 cp -p [location of LQPrivateGen]/config/GEN/LQToUEle_leptonInduced_M-1000_lambda1p0.csv .
+# modify csv file to contain the .list file that was produced as a result of the make_LHE.sh step
+# copy list file(s) referred to in the csv file, if needed
+cp -p [location of folder where make_LHE.sh was run]/*.list .
 # create the cfg.py for CMSSW GEN production
 python config_GEN.py --inputLHE LQToUEle_leptonInduced_M-1000_lambda1p0.csv
 # Run the make_GEN.sh script to interactively run CMSSW
